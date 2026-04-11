@@ -42,6 +42,17 @@ const projects = [
     demoUrl: "https://surajsinghsft.github.io/countries-app/",
     githubUrl: "https://github.com/surajsinghsft/countries-app",
   },
+
+  {
+    id: 7,
+    title: "Snake Game",
+    description:
+      "A classic Snake game built with React and TailwindCSS",
+    image: "/projects/project7.png",
+    tags: ["JavaScript", "TailwindCSS", "React"],
+    demoUrl: "https://snake-game-sand-tau.vercel.app/",
+    githubUrl: "https://github.com/surajsinghsft/Snake-Game",
+  },
  {
     id: 5,
     title: "Language Translator",
@@ -62,6 +73,17 @@ const projects = [
     tags: ["JavaScript", "TailwindCSS", "React"],
     demoUrl: "https://surajsinghsft.github.io/kanban-ui/",
     githubUrl: "https://github.com/surajsinghsft/kanban-ui",
+  },
+
+  {
+    id: 8,
+    title: "Tic-Toc-Teo",
+    description:
+      "Tic-Toc-Teo Game built with React and TailwindCSS",
+    image: "/projects/project8.png",
+    tags: ["JavaScript", "TailwindCSS", "React"],
+    demoUrl: "https://tic-toc-teo-orcin.vercel.app/",
+    githubUrl: "https://github.com/surajsinghsft/Tic-toc-Teo",
   },
 ];
 
