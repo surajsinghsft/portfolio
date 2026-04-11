@@ -1,19 +1,39 @@
-import { useState } from "react";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
-import Tilt from "react-parallax-tilt";
 
 const projects = [
-  {
+
+   {
     id: 1,
+    title: "Ai-carrer-coach",
+    description: "Build Your Future with AI Career Coach 🚀Crack interviews, build skills, and grow faster with powerful AI tools designed for your success.",
+    image: "/projects/project4.png",
+    tags: ["Next.js", "React", "TailwindCSS", "JavaScript", "Clerk"],
+    demoUrl: "https://ai-career-coach-2cbm.vercel.app",
+    githubUrl: "https://github.com/surajsinghsft/AI-Career-Coach",
+  },
+
+   {
+    id: 2,
+    title: "HirePrep AI",
+    description: "Built an AI-powered interview preparation platform with video calling and automated question generation",
+    image: "/projects/project3.png",
+    tags: ["Next.js", "React", "TailwindCSS", "JavaScript", "Clerk","Stream","Supabase", "Clerk", "Arcjet"],
+    demoUrl: "https://prept-ai.vercel.app",
+    githubUrl: "https://github.com/surajsinghsft/prept-ai",
+  },
+
+  {
+    id: 3,
     title: "Blog App With Ai",
     description: "Your own blogging Platform",
     image: "/projects/project.png",
-    tags: ["React", "TailwindCSS", "Node.js"],
+    tags: ["React", "TailwindCSS", "Node.js", "Express", "MongoDB"],
     demoUrl: "https://blog-with-ai-psi.vercel.app/",
     githubUrl: "https://github.com/surajsinghsft/BlogWithAi",
   },
+
   {
-    id: 2,
+    id: 4,
     title: "All Countries About.",
     description:
       "Where in the world All countries population and Capital Region.",
@@ -22,20 +42,30 @@ const projects = [
     demoUrl: "https://surajsinghsft.github.io/countries-app/",
     githubUrl: "https://github.com/surajsinghsft/countries-app",
   },
-  {
-    id: 3,
-    title: "HirePrep AI",
-    description: "Built an AI-powered interview preparation platform with video calling and automated question generation",
-    image: "/projects/project3.png",
-    tags: ["Next.js", "React", "TailwindCSS", "JavaScript", "Clerk","Stream","Supabase", "Clerk", "Arcjet"],
-    demoUrl: "https://prept-ai.vercel.app",
-    githubUrl: "https://github.com/surajsinghsft/prept-ai",
+ {
+    id: 5,
+    title: "Language Translator",
+    description:
+      "Language Translator API ",
+    image: "/projects/project2.png",
+    tags: ["JavaScript", "TailwindCSS", "React"],
+    demoUrl: "https://surajsinghsft.github.io/language-translator/",
+    githubUrl: "https://surajsinghsft.github.io/language-translator/",
+  },
+
+   {
+    id: 6,
+    title: "Kanban UI Board",
+    description:
+      "Kanban UI Board with drag and drop functionality",
+    image: "/projects/project6.png",
+    tags: ["JavaScript", "TailwindCSS", "React"],
+    demoUrl: "https://surajsinghsft.github.io/kanban-ui/",
+    githubUrl: "https://github.com/surajsinghsft/kanban-ui",
   },
 ];
 
 export const ProjectsSection = () => {
-  const [isPaused, setIsPaused] = useState(false);
-
   return (
     <section id="projects" className="py-24 px-4 relative overflow-hidden">
       <div className="container mx-auto max-w-6xl">
@@ -49,80 +79,60 @@ export const ProjectsSection = () => {
           crafted with attention to detail, performance, and user experience.
         </p>
 
-        {/* Moving Projects */}
-        <div className="overflow-hidden">
-          <div
-            className={`flex w-max gap-8 animate-project-marquee ${
-              isPaused ? "[animation-play-state:paused]" : ""
-            }`}
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-            onTouchStart={() => setIsPaused(true)}
-            onTouchEnd={() => setIsPaused(false)}
-            onTouchCancel={() => setIsPaused(false)}
-          >
-            {[...projects, ...projects].map((project, index) => (
-              <Tilt
-                key={`${project.id}-${index}`}
-                tiltMaxAngleX={15}
-                tiltMaxAngleY={15}
-                glareEnable={true}
-                glareMaxOpacity={0.25}
-                scale={1.05}
-                className="min-w-[300px]"
-              >
-                <div className="group bg-card rounded-lg overflow-hidden shadow-lg">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {projects.map((project) => (
+            <div
+              key={project.id}
+              className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-card shadow-lg transition-transform duration-300 hover:-translate-y-2"
+            >
+              <div className="h-36 overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
 
-                  <div className="h-48 overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  </div>
-
-                  <div className="p-6">
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tags.map((tag, i) => (
-                        <span
-                          key={i}
-                          className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    <h3 className="text-xl font-semibold mb-1">
-                      {project.title}
-                    </h3>
-
-                    <p className="text-muted-foreground text-sm mb-4">
-                      {project.description}
-                    </p>
-
-                    <div className="flex space-x-3">
-                      <a
-                        href={project.demoUrl}
-                        target="_blank"
-                        className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                      >
-                        <ExternalLink size={20} />
-                      </a>
-
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                      >
-                        <Github size={20} />
-                      </a>
-                    </div>
-                  </div>
+              <div className="flex flex-1 flex-col p-6">
+                <div className="mb-4 flex flex-wrap gap-2">
+                  {project.tags.map((tag, i) => (
+                    <span
+                      key={i}
+                      className="rounded-full border border-white/10 bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
-              </Tilt>
-            ))}
-          </div>
+
+                <h3 className="mb-2 text-xl font-semibold">{project.title}</h3>
+
+                <p className="mb-5 text-sm text-muted-foreground">
+                  {project.description}
+                </p>
+
+                <div className="mt-auto flex space-x-3">
+                  <a
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-foreground/80 transition-colors duration-300 hover:text-primary"
+                  >
+                    <ExternalLink size={20} />
+                  </a>
+
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-foreground/80 transition-colors duration-300 hover:text-primary"
+                  >
+                    <Github size={20} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
         <div className="text-center mt-12">
