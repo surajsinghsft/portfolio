@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import Tilt from "react-parallax-tilt";
 
@@ -33,6 +34,8 @@ const projects = [
 ];
 
 export const ProjectsSection = () => {
+  const [isPaused, setIsPaused] = useState(false);
+
   return (
     <section id="projects" className="py-24 px-4 relative overflow-hidden">
       <div className="container mx-auto max-w-6xl">
@@ -48,7 +51,16 @@ export const ProjectsSection = () => {
 
         {/* Moving Projects */}
         <div className="overflow-hidden">
-          <div className="flex w-max gap-8 animate-project-marquee hover:[animation-play-state:paused]">
+          <div
+            className={`flex w-max gap-8 animate-project-marquee ${
+              isPaused ? "[animation-play-state:paused]" : ""
+            }`}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            onTouchStart={() => setIsPaused(true)}
+            onTouchEnd={() => setIsPaused(false)}
+            onTouchCancel={() => setIsPaused(false)}
+          >
             {[...projects, ...projects].map((project, index) => (
               <Tilt
                 key={`${project.id}-${index}`}
