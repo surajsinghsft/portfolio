@@ -105,7 +105,15 @@ export const ProjectsSection = () => {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-card shadow-lg transition-transform duration-300 hover:-translate-y-2"
+              role="button"
+              tabIndex={0}
+              onClick={() => window.open(project.demoUrl, "_blank", "noopener,noreferrer")}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  window.open(project.demoUrl, "_blank", "noopener,noreferrer");
+                }
+              }}
+              className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-card shadow-lg transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
             >
               <div className="h-36 overflow-hidden">
                 <img
@@ -134,19 +142,16 @@ export const ProjectsSection = () => {
                 </p>
 
                 <div className="mt-auto flex space-x-3">
-                  <a
-                    href={project.demoUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-foreground/80 transition-colors duration-300 hover:text-primary"
-                  >
+                  <span className="text-foreground/80 transition-colors duration-300 group-hover:text-primary flex items-center gap-2">
                     <ExternalLink size={20} />
-                  </a>
+                    Live Demo
+                  </span>
 
                   <a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noreferrer"
+                    onClick={(event) => event.stopPropagation()}
                     className="text-foreground/80 transition-colors duration-300 hover:text-primary"
                   >
                     <Github size={20} />
