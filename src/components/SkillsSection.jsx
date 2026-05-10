@@ -12,6 +12,7 @@ import {
   FaNodeJs,
   FaGitAlt,
   FaDocker,
+  FaJava,
 } from "react-icons/fa";
 
 import {
@@ -23,6 +24,7 @@ import {
   SiPostgresql,
   SiGraphql,
   SiFigma,
+  SiPython,
 } from "react-icons/si";
 
 const skills = [
@@ -33,6 +35,8 @@ const skills = [
   { name: "Tailwind CSS", level: 90, category: "frontend", icon: <SiTailwindcss /> },
   { name: "Next.js", level: 80, category: "frontend", icon: <SiNextdotjs /> },
 
+  { name: "Java with DSA", level: 88, showPercent: false, category: "backend", icon: <FaJava /> },
+  { name: "Python", level: 88, showPercent: false, category: "backend", icon: <SiPython /> },
   { name: "Node.js", level: 80, category: "backend", icon: <FaNodeJs /> },
   { name: "Express", level: 75, category: "backend", icon: <SiExpress /> },
   { name: "MongoDB", level: 70, category: "backend", icon: <SiMongodb /> },
@@ -97,7 +101,7 @@ export const SkillsSection = () => {
                 <div className="w-20 h-20 mx-auto mb-4">
                   <CircularProgressbar
                     value={skill.level}
-                    text={`${skill.level}%`}
+                    text={skill.showPercent === false ? "" : `${skill.level}%`}
                     styles={buildStyles({
                       pathColor: "#6366f1",
                       textColor: "#ffffff",
