@@ -12,18 +12,15 @@ export const AboutSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <h3 className="text-2xl font-semibold">
-              Passionate Web Developer & Tech Creator
+              Passionate Full Stack Developer & Python Developer
             </h3>
 
             <p className="text-muted-foreground">
-              As a passionate Full Stack Web Developer, I specialize in building modern, responsive, and performance-driven web applications. I work on both frontend and backend technologies to develop complete, real-world solutions from scratch.
+              I'm a passionate Full Stack Developer specializing in the MERN stack and Python, focused on building modern, responsive, and scalable web applications. I work across both frontend and backend development to turn ideas into reliable, real-world digital solutions.
             </p>
 
             <p className="text-muted-foreground">
-              I'm passionate about creating elegant solutions to complex
-              problems, and I'm constantly learning new technologies and
-              techniques to stay at the forefront of the ever-evolving web
-              landscape.
+              Along with MERN technologies, I use Python for backend development, REST APIs, automation, and problem-solving. I'm continuously learning new technologies and improving my skills to build clean, efficient, and user-friendly applications.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
@@ -49,10 +46,9 @@ export const AboutSection = () => {
                   <Code className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg"> Web Development</h4>
+                  <h4 className="font-semibold text-lg"> MERN Stack Development</h4>
                   <p className="text-muted-foreground">
-                    Creating responsive websites and web applications with
-                    modern frameworks.
+                    Building modern full-stack applications using MongoDB, Express.js, React, and Node.js.
                   </p>
                 </div>
               </div>
@@ -63,10 +59,9 @@ export const AboutSection = () => {
                   <User className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg">UI/UX Design</h4>
+                  <h4 className="font-semibold text-lg">Python Development</h4>
                   <p className="text-muted-foreground">
-                    Designing intuitive user interfaces and seamless user
-                    experiences.
+                    Developing backend solutions, REST APIs, automation tools, and practical Python applications..
                   </p>
                 </div>
               </div>
@@ -78,10 +73,9 @@ export const AboutSection = () => {
                 </div>
 
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg">Project Management</h4>
+                  <h4 className="font-semibold text-lg">Problem Solving & Learning</h4>
                   <p className="text-muted-foreground">
-                    Leading projects from conception to completion with agile
-                    methodologies.
+                    Passionate about solving real-world problems, learning new technologies, and continuously improving development skills..
                   </p>
                 </div>
               </div>
