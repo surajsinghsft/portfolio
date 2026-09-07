@@ -27,7 +27,7 @@ export const HeroSection = () => {
                       2000,
                       "Full Stack Developer",
                       2000,
-                      "React Developer",
+                      "Python Developer",
                       2000,
                     ]}
                     speed={50}
