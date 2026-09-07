@@ -22,6 +22,10 @@ export const Navbar = ({ pythonPage = false }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // Detect actual touch/mobile devices even when
+  // Chrome "Desktop site" is enabled.
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
   const navItems = pythonPage ? pythonNavItems : mainNavItems;
 
   useEffect(() => {
@@ -33,6 +37,23 @@ export const Navbar = ({ pythonPage = false }) => {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const checkDevice = () => {
+      const touch =
+        window.matchMedia("(pointer: coarse)").matches ||
+        navigator.maxTouchPoints > 0;
+
+      setIsTouchDevice(touch);
+    };
+
+    checkDevice();
+    window.addEventListener("resize", checkDevice);
+
+    return () => {
+      window.removeEventListener("resize", checkDevice);
     };
   }, []);
 
@@ -68,20 +89,15 @@ export const Navbar = ({ pythonPage = false }) => {
 
       <div className="container mx-auto px-4 sm:px-6">
         <div className="relative flex items-center justify-between h-10 md:h-11">
-
           {/* Logo */}
           <a
             href={pythonPage ? "/python" : "/"}
             onClick={closeMenu}
-            className="text-lg sm:text-xl font-bold flex items-center z-[120] shrink-0"
+            className="text-lg sm:text-xl font-bold flex items-center z-[170] shrink-0"
           >
-            <span className="text-white">
-              Suraj
-            </span>
+            <span className="text-white">Suraj</span>
 
-            <span className="text-primary ml-2">
-              portfolio
-            </span>
+            <span className="text-primary ml-2">portfolio</span>
           </a>
 
           {/* =====================================================
@@ -90,29 +106,29 @@ export const Navbar = ({ pythonPage = false }) => {
 
           <a
             href="/python"
-            className="
-              hidden md:inline-flex
-              absolute
-              left-1/2
-              -translate-x-1/2
-              items-center
-              gap-1.5
-              px-5
-              py-1.5
-              rounded-full
-              border border-primary/50
-              bg-primary/10
-              text-primary
-              text-sm
-              font-semibold
-              shadow-[0_0_15px_rgba(139,92,246,0.25)]
-              hover:bg-primary/20
-              hover:border-primary
-              hover:shadow-[0_0_25px_rgba(139,92,246,0.45)]
-              hover:scale-105
-              transition-all
-              duration-300
-            "
+            className={cn(
+              isTouchDevice ? "hidden" : "inline-flex",
+              "absolute",
+              "left-1/2",
+              "-translate-x-1/2",
+              "items-center",
+              "gap-1.5",
+              "px-5",
+              "py-1.5",
+              "rounded-full",
+              "border border-primary/50",
+              "bg-primary/10",
+              "text-primary",
+              "text-sm",
+              "font-semibold",
+              "shadow-[0_0_15px_rgba(139,92,246,0.25)]",
+              "hover:bg-primary/20",
+              "hover:border-primary",
+              "hover:shadow-[0_0_25px_rgba(139,92,246,0.45)]",
+              "hover:scale-105",
+              "transition-all",
+              "duration-300"
+            )}
           >
             <span>🐍</span>
             <span>Python Development</span>
@@ -122,7 +138,12 @@ export const Navbar = ({ pythonPage = false }) => {
               DESKTOP NAVIGATION
           ====================================================== */}
 
-          <div className="hidden md:flex items-center gap-7 ml-auto">
+          <div
+            className={cn(
+              "items-center gap-7 ml-auto",
+              isTouchDevice ? "hidden" : "flex"
+            )}
+          >
             {navItems.map((item) => (
               <a
                 key={item.name}
@@ -149,32 +170,24 @@ export const Navbar = ({ pythonPage = false }) => {
           <button
             type="button"
             onClick={() => setIsMenuOpen((prev) => !prev)}
-            className="
-              md:hidden
-              relative
-              z-[90]
-              flex
-              items-center
-              justify-center
-              w-10
-              h-10
-              rounded-xl
-              bg-white/5
-              border border-white/10
-              text-white
-              hover:bg-primary/10
-              hover:border-primary/30
-              transition-all
-              duration-300
-            "
+            className={cn(
+              "relative z-[170]",
+              "items-center justify-center",
+              "w-10 h-10",
+              "rounded-xl",
+              "bg-white/5",
+              "border border-white/10",
+              "text-white",
+              "hover:bg-primary/10",
+              "hover:border-primary/30",
+              "transition-all",
+              "duration-300",
+              isTouchDevice ? "flex" : "hidden"
+            )}
             aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
             aria-expanded={isMenuOpen}
           >
-            {isMenuOpen ? (
-              <X size={22} />
-            ) : (
-              <Menu size={22} />
-            )}
+            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
@@ -186,9 +199,10 @@ export const Navbar = ({ pythonPage = false }) => {
       <div
         onClick={closeMenu}
         className={cn(
-          "fixed inset-0 z-[100] md:hidden",
+          "fixed inset-0 z-[150]",
           "bg-black/50 backdrop-blur-[2px]",
           "transition-opacity duration-300",
+          isTouchDevice ? "block" : "hidden",
           isMenuOpen
             ? "opacity-100 visible"
             : "opacity-0 invisible pointer-events-none"
@@ -201,67 +215,70 @@ export const Navbar = ({ pythonPage = false }) => {
 
       <div
         className={cn(
-          "fixed top-0 right-0 h-[100dvh] w-[82%] max-w-[340px] z-[110] md:hidden flex flex-col",
+          "fixed top-0 right-0",
+          "h-[100dvh]",
+          "w-[88%] max-w-[360px]",
+          "z-[160]",
           "bg-[#0B1120]",
           "border-l border-primary/20",
-          "shadow-[-15px_0_45px_rgba(0,0,0,0.45)]",
+          "shadow-[-20px_0_50px_rgba(0,0,0,0.55)]",
           "transition-transform duration-300 ease-out",
-          isMenuOpen
-            ? "translate-x-0"
-            : "translate-x-full"
+          "flex flex-col",
+          isTouchDevice ? "flex" : "hidden",
+          isMenuOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
         {/* Drawer Header */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
-
+        <div className="flex items-center justify-between px-5 py-5 border-b border-white/10 shrink-0">
           <div>
-            <p className="text-xs uppercase tracking-[0.25em] text-primary">
+            <p className="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-primary">
               Navigation
             </p>
 
-            <p className="text-white font-semibold mt-1">
+            <p className="text-white font-semibold text-base sm:text-lg mt-1">
               {pythonPage ? "Python Development" : "Main Portfolio"}
             </p>
           </div>
 
+          {/* Separate close button */}
           <button
-            type="button"
-            onClick={closeMenu}
-            className="
-              flex
-              items-center
-              justify-center
-              w-10
-              h-10
-              rounded-xl
-              bg-white/5
-              border border-white/10
-              text-gray-300
-              hover:text-white
-              hover:border-primary/40
-              transition-all
-              duration-300
-            "
-            aria-label="Close Menu"
-          >
-            <X size={21} />
-          </button>
+  type="button"
+  onClick={() => setIsMenuOpen(true)}
+  className={cn(
+    "relative z-[170]",
+    "items-center justify-center",
+    "w-10 h-10",
+    "rounded-xl",
+    "bg-white/5",
+    "border border-white/10",
+    "text-white",
+    "hover:bg-primary/10",
+    "hover:border-primary/30",
+    "transition-all",
+    "duration-300",
+    isTouchDevice && !isMenuOpen ? "flex" : "hidden"
+  )}
+  aria-label="Open Menu"
+  aria-expanded={isMenuOpen}
+>
+  <Menu size={22} />
+</button>
         </div>
 
         {/* Drawer Content */}
-        <div className="flex-1 min-h-0 overflow-y-auto flex flex-col px-5 py-7">
-
+        <div className="flex-1 overflow-y-auto px-5 py-6">
           {/* Python Button */}
           <a
             href="/python"
             onClick={closeMenu}
             className="
+              w-full
               flex
               items-center
               gap-3
               px-4
-              py-3
-              rounded-xl
+              py-4
+              rounded-2xl
               border border-primary/40
               bg-primary/10
               text-primary
@@ -269,28 +286,27 @@ export const Navbar = ({ pythonPage = false }) => {
               shadow-[0_0_20px_rgba(139,92,246,0.12)]
               hover:bg-primary/20
               hover:border-primary/60
-              transition-all
-              duration-300
-              mb-6
+              transition-all duration-300
+              text-left
+              mb-5
             "
           >
-            <span className="text-lg">🐍</span>
+            <span className="text-xl shrink-0">🐍</span>
 
-            <div>
-              <p className="text-sm">
+            <div className="min-w-0">
+              <p className="text-sm sm:text-base font-semibold">
                 Python Development
               </p>
 
-              <p className="text-[11px] text-primary/60 mt-0.5">
+              <p className="text-[11px] sm:text-xs text-primary/60 mt-0.5">
                 Explore Python Work
               </p>
             </div>
           </a>
 
           {/* Navigation Links */}
-          <div className="flex flex-col gap-2">
-
-            {navItems.map((item, index) => (
+          <div className="flex flex-col gap-1">
+            {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
@@ -300,17 +316,18 @@ export const Navbar = ({ pythonPage = false }) => {
                   flex
                   items-center
                   justify-between
+                  w-full
                   px-4
                   py-3.5
                   rounded-xl
                   text-gray-300
                   hover:text-white
                   hover:bg-white/5
-                  transition-all
-                  duration-300
+                  active:bg-white/10
+                  transition-all duration-300
                 "
               >
-                <span className="font-medium">
+                <span className="text-base sm:text-lg font-medium">
                   {item.name}
                 </span>
 
@@ -321,27 +338,20 @@ export const Navbar = ({ pythonPage = false }) => {
                     -translate-x-2
                     group-hover:opacity-100
                     group-hover:translate-x-0
-                    transition-all
-                    duration-300
+                    transition-all duration-300
                   "
                 >
                   →
                 </span>
               </a>
             ))}
-
           </div>
 
           {/* Bottom Info */}
-          <div className="mt-auto pt-8 pb-6">
-
-            <div className="h-px bg-white/10 mb-5" />
-
-            <p className="text-xs text-gray-500 leading-relaxed">
-              Building modern web applications with
-              MERN Stack & Python.
+          <div className="pt-7 mt-6 border-t border-white/10">
+            <p className="text-xs sm:text-sm text-gray-500 leading-relaxed text-center">
+              Building modern web applications with MERN Stack & Python.
             </p>
-
           </div>
         </div>
       </div>
