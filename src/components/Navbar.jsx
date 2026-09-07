@@ -152,7 +152,7 @@ export const Navbar = ({ pythonPage = false }) => {
             className="
               md:hidden
               relative
-              z-[120]
+              z-[90]
               flex
               items-center
               justify-center
@@ -201,7 +201,7 @@ export const Navbar = ({ pythonPage = false }) => {
 
       <div
         className={cn(
-          "fixed top-0 right-0 h-screen w-[82%] max-w-[340px] z-[110] md:hidden",
+          "fixed top-0 right-0 h-[100dvh] w-[82%] max-w-[340px] z-[110] md:hidden flex flex-col",
           "bg-[#0B1120]",
           "border-l border-primary/20",
           "shadow-[-15px_0_45px_rgba(0,0,0,0.45)]",
@@ -249,7 +249,7 @@ export const Navbar = ({ pythonPage = false }) => {
         </div>
 
         {/* Drawer Content */}
-        <div className="flex flex-col px-5 py-7">
+        <div className="flex-1 min-h-0 overflow-y-auto flex flex-col px-5 py-7">
 
           {/* Python Button */}
           <a
@@ -333,7 +333,7 @@ export const Navbar = ({ pythonPage = false }) => {
           </div>
 
           {/* Bottom Info */}
-          <div className="mt-auto pt-8">
+          <div className="mt-auto pt-8 pb-6">
 
             <div className="h-px bg-white/10 mb-5" />
 
