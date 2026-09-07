@@ -220,7 +220,7 @@ export const PythonPage = () => {
               transition={{ duration: 0.7 }}
             >
               <a
-  href="/"
+  href="/#hero"
   className="
     group
     inline-flex
