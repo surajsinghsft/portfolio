@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { PythonPage } from "@/pages/PythonPage";
 import { CursorGlow } from "@/components/CursorGlow";
 
+import ChatBot from "./components/ChatBot";
 
 function App() {
   useEffect(() => {
@@ -36,6 +37,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="/python" element={<PythonPage />} />
         </Routes>
+         <ChatBot />
       </BrowserRouter>
     </>
   );
